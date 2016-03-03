@@ -1,0 +1,92 @@
+{% extends 'cocktails/sidebar.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Directory{% endblock %}
+
+{% block side_block %}
+<form action="." method="post" enctype="multipart/form-data" id="form" style="margin-top: 88px;">
+    {% csrf_token %}
+    <div class="panel panel-warning">
+        
+        <div class="panel-heading">
+            <h3 class="panel-title">Search</h3>
+        </div>
+        
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="name">Sort By Name</label>
+                <input name="name" type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="base">Sort by Base</label>
+                <select class="form-control" name="base">
+                    <option value="">------</option>
+                    <option value="1">Whiskey</option>
+                    <option value="2">Burbon</option>
+                    <option value="3">Liquor</option>
+                    <option value="4">Vodka</option>
+                    <option value="5">Rum</option>
+                    <option value="6">Gin</option>
+                    <option value="7">Tequila</option>
+                    <option value="8">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="taste_palette">Sort by Taste Palette</label>
+                <select class="form-control" name="taste_palette">
+                    <option value="">------</option>
+                    <option value="1">Sweet</option>
+                    <option value="2">Sour</option>
+                    <option value="3">Perfect</option>
+                    <option value="4">Other</option>
+                </select>
+            </div>
+        </div>  <!--end of panel body-->
+            
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-default center-block">
+                <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;&nbsp; Search
+            </button>    
+        </div>
+    </div>
+        
+</form>
+
+{% endblock %}
+
+
+{% block body_block %}
+
+    <section id="cocktails">
+
+        <h2 class="section-title">Cocktails Directory</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-responsive">
+
+                <tbody>
+
+                    {% for cocktail in cocktails %}
+                    <tr>
+                        <td width="15%">
+                            <a href="/cocktail/cocktails/{{cocktail.slug}}/"><img class="media-object cocktail-dir-img" src="/media/{{cocktail.image}}"></a>
+                        </td>
+                        <td width="55%">
+                            <h3 class="media-heading">{{cocktail.name}}</h3>
+                            <p>Base: <b>{{cocktail.base}}</b><br>Taste Palette: <b>{{cocktail.taste_palette}}</b></p>
+                        </td>
+                        <td width="10%">
+                            <a href="/cocktail/cocktails/{{cocktail.slug}}" class="btn btn-default cocktail-dir-view-btn">View Cocktail</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>          
+        </div>
+        
+    </section>
+
+
+{% endblock %}

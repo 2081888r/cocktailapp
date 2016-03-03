@@ -1,0 +1,97 @@
+{% extends 'cocktails/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Cocktail > Edit{% endblock %}
+
+{% block body_block %}
+
+    
+    <section id="update_cocktail">
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h2 class="section-title text-center">Edit Cocktail</h2>
+                    <form action="." method="post" enctype="multipart/form-data" id="form">
+                        {% csrf_token %}
+                        
+                        <div class="form-group" >
+                            <label for="avatar">Select an Image</label>
+                            {% for error in form.image.errors %}
+                            <div class="alert alert-danger">{{error}}</div>
+                            {% endfor %}
+                            <input name="image" type="file">
+                        </div>
+
+                        <div class="form-group">
+                            {% for error in form.name.errors %}
+                            <div class="alert alert-danger">{{error}}</div>
+                            {% endfor %}
+                            <input class="form-control" name="name" type="text" value="{{cocktail.name}}" placeholder="Name">
+                        </div>
+                        
+                        <div class="form-group">
+                            {% for error in form.ingredients.errors %}
+                            <div class="alert alert-danger">{{error}}</div>
+                            {% endfor %}
+                            <input class="form-control" name="ingredients" type="text" value="{{cocktail.ingredients}}" placeholder="Ingredients (coma separated)">
+                        </div>
+                        
+                        <div class="form-group">
+                            {% for error in form.how_to_make_comment.errors %}
+                            <div class="alert alert-danger">{{error}}</div>
+                            {% endfor %}
+                            <textarea class="form-control" placeholder="Describe the method of making this cocktail" name="how_to_make_comment" required>{{cocktail.how_to_make_comment}}</textarea>
+                        </div>
+                        
+                        <div class="form-group" >
+                            <label for="base">Base</label>
+                            {% for error in form.base.errors %}
+                            <div class="alert alert-danger">{{error}}</div>
+                            {% endfor %}
+                            <select class="form-control" name="base" required>
+                                <option disabled selected>--- Select an option ---</option>
+                                <option value="1">Whiskey</option>
+                                <option value="2">Burbon</option>
+                                <option value="3">Liquor</option>
+                                <option value="4">Vodka</option>
+                                <option value="5">Rum</option>
+                                <option value="6">Gin</option>
+                                <option value="7">Tequila</option>
+                                <option value="8">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="taste_palette">Taste Palette</label>
+                            {% for error in form.taste_palette.errors %}
+                            <div class="alert alert-danger">{{error}}</div>
+                            {% endfor %}
+                            <select class="form-control" name="taste_palette" required>
+                                <option disabled selected>--- Select an option ---</option>
+                                <option value="1">Sweet</option>
+                                <option value="2">Sour</option>
+                                <option value="3">Perfect</option>
+                                <option value="4">Other</option>
+                            </select>
+                        </div>
+                        
+                        
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;&nbsp; Submit</button>
+                            <a href="#" class="btn btn-warning" id="clear-form-btn"><span class="glyphicon glyphicon-erase"></span>&nbsp;&nbsp;&nbsp; Clear</a>
+                            <a href="/cocktail/cocktails/{{cocktail.slug}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp; Cancel</a>
+                        </div>
+
+                    </form>
+                
+                </div><!--end of form column-->
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+        
+    </section>
+
+{% endblock %}

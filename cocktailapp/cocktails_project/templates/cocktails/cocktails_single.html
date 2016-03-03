@@ -1,0 +1,66 @@
+{% extends 'cocktails/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Cocktails > {{cocktail.name}}{% endblock %}
+
+{% block body_block %}
+
+    <section id="cocktail_single">
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="/media/{{cocktail.image}}" class="img-responsive" style="margin-top: 30px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1 class="cocktail-single-title">{{cocktail.name}}</h1>
+                        </div>
+
+                        <div class="col-md-6">
+                            <br>
+                            {% if user.is_authenticated %}
+                            <form method="post" onsubmit="return false">
+                                {% csrf_token %}
+                                <input id="rating-input" type="number" data-default-caption="{rating} drinks" data-star-captions="{}" value="{{rating}}" {{readonly}}>
+                                <p id="thanks-for-rating">Thanks for rating</p>
+                                <small>Out of <b>{{total_votes}}</b></small>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <p>
+                        Bartender: <b><a href="/cocktail/profile/{{bartender.username}}">{{profile.full_name}}</a></b> <br>
+                        Base: <b>{{cocktail.base}}</b> <br>
+                        Taste Palette: <b>{{cocktail.taste_palette}}</b>
+                    </p>
+                    <p> 
+                        <b>Ingredients: </b><br>
+                        <ul>
+                            {% for ingredient in cocktail.ingredients_as_list %}
+                                <li>{{ ingredient }}</li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                
+                    <p>Technique: <b>{{cocktail.how_to_make_comment}}</b></p>
+                
+                    <p>Views: <b>{{cocktail.views}}</b></p>
+                
+                    {% if bartender.id == user.id %}
+                    <div class="btn-group" style="margin-top: 30px;">
+                        <a href="/cocktail/cocktails/{{cocktail.slug}}/edit/" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;Edit</a>
+                    </div>
+                    {% endif %}
+                
+                </div><!--end of form column-->
+            </div>
+        </div>
+        
+    </section>
+
+
+{% endblock %}

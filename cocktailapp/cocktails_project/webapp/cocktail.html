@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cocktail view &middot; Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Cocktail Masters Group">
+
+    <!-- Stylesheets -->
+ <link href="css/bootstrap.css" rel="stylesheet">
+ <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet">
+    </head>
+
+    <body id="page-top" class="index">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" style ="background-color: #434343;">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <a class="navbar-brand" href="#page-top">*logo* </a>
+            </div>
+
+<ul class="nav nav-tabs">
+<ul class="nav navbar-nav navbar-right">
+
+  <li role="presentation" ><a href="{% url 'index' %}">Home</a></li>
+  <li role="presentation"><a href="{% url 'profile' %}">Profile</a></li>
+  <li role="presentation"class="active"><a href="{% url 'search' %}">Cocktails</a></li>
+  <li role="presentation" style ="margin-top: 12px">
+<!-- Button trigger modal -->
+<button type="button"  data-toggle="modal" data-target="#myModal">
+ <span class="glyphicon glyphicon-plus">
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <!--content of *add cocktail* modal here-->
+		<!--fields etc-->
+
+<!--inputbox-->
+<div class="input-group">
+  <input type="text" class="form-control" placeholder="option" aria-describedby="basic-addon1">
+</div>
+</br>
+<!--checkbox-->
+    <div class="input-group">
+      <span class="input-group-addon">
+        <input type="checkbox" aria-label="option">
+      </span>
+      <input type="text" class="form-control" aria-label="...">
+    </div><!-- /input-group -->
+<!--end checkbox option-->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</li>
+</ul>
+</div>
+
+<!--cocktail details-->
+
+ <div class="container">
+<div class="media-left">
+   <a class="pull-left" href="#">
+      <img class="media-object-pull-left" src="<!--cocktail image-->" alt="..."width = "150">
+   </a>
+    <h4 class="pull-left">cocktail</h4>
+   <div class="pull-left">
+     </br></br>
+<!--a star rating would go here.
+Not entirely sure how we want to implement this. 
+Possibly by using django ratings  https://github.com/dcramer/django-ratings once the rest of the project is set up?-->
+
+	 </br>cocktail description/history
+   </div>
+  
+</div>
+</div>
+</br>
+<!--cocktail nav-->  
+<!-- Nav tabs -->
+ <div class="container">
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#ingredients" aria-controls="ingredients" role="tab" data-toggle="tab">Ingredients</a></li>
+    <li role="presentation"><a href="#instructions" aria-controls="instructions" role="tab" data-toggle="tab">Instructions</a></li>
+    
+  </ul>
+</br>
+  <!-- Tab pane contents -->
+  <div class="tab-content">
+  <div role="tabpanel" class="tab-pane fade in active" id="ingredients">These are the cocktail ingredients
+  <ul>
+  <li>1</li>
+  <li>2</li>
+  </ul>
+  </div>
+  <div role="tabpanel" class="tab-pane fade" id="instructions">The instructions fot making the cocktail</div>
+
+</div>
+</div>
+</div>
+
+
+<!--Comments--> 
+<div class="container">
+	<ul id="comments" class="comments">
+    <li class="comment">
+        <div class="clearfix">
+            <h4 class="pull-left">Username</h4>
+            <p class="pull-right">Date</p>
+        </div>
+        <p>
+            Comment
+        </p>
+    </li>
+ 
+    <li class="comment clearfix">
+        <div class="clearfix">
+            <h4 class="pull-left">Username</h4>
+            <p class="pull-right">Date</p>
+        </div>
+        <p>
+            Comment
+        </p>
+    </li>
+</ul>
+
+</div>
+</div>
+<!--leaving your own comment--> 
+<!--comments on all of these pages are going to need to be sorted once user logins are implemented-->
+<div class="container">
+<div class="well">
+ 
+    <h4>Leave a comment</h4>
+ 
+    <form role="form" class="clearfix">
+ 
+        <div class="col-md-6 form-group">
+            <label class="sr-only" for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name">
+        </div>
+ 
+        <div class="col-md-6 form-group">
+            <label class="sr-only" for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Email">
+        </div>
+ 
+        <div class="col-md-12 form-group">
+            <label class="sr-only" for="email">Comment</label>
+            <textarea class="form-control" id="comment" placeholder="Comment"></textarea>
+        </div>
+ 
+        <div class="col-md-12 form-group text-right">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+ 
+    </form>  
+</div>
+</div>
+
+<!-- footer-->
+<hr>
+<div id="footer" style="color:#000000">
+  <div class="container">
+    <div class="col-md-4"> 
+<p class="text-muted">
+twitter </br> facebook </div>
+</p>
+<div class="col-md-4">
+<p class="text-muted">
+about </br> sitemap </div>
+</p>
+  </div>
+</div>
+
+</div>
+
+<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src = "js/bootstrap.js"></script><script type="text/javascript"></script>
+
+
+
+  </body>
+</html>
+

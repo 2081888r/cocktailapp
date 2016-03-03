@@ -1,0 +1,42 @@
+{% extends 'cocktails/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Bartenders{% endblock %}
+
+{% block body_block %}
+
+    
+    <section id="directory">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"><h2 class="section-title">Bartenders Directory</h2></div>
+            </div>
+            <div class="col-md-12">         
+                <table class="table table-striped table-hover table-responsive">
+                
+                    <tbody>
+                        
+                        {% for bartender, profile in bartenders %}
+                        <tr>
+                            <td width="15%">
+                                <a href="/cocktail/profile/{{bartender.username}}"><img class="media-object bartender-dir-img" src="/media/{{profile.avatar}}"></a>
+                            </td>
+                            <td width="75%">
+                                <h3 class="media-heading">{{profile.full_name}}</h3>
+                                <p>Favourite Coocktail: <b>{{profile.fav_cocktail}}</b><br>Works: <b>{{profile.workplace}}</b></p>
+                            </td>
+                            <td width="10%"><a href="/cocktail/profile/{{bartender.username}}" class="btn btn-default bartender-dir-view-btn"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;View Profile</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                
+                </table>           
+            </div>  <!--end of column-->
+        </div>  <!--end of row-->
+        
+    </section>
+
+
+{% endblock %}

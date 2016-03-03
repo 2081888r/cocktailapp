@@ -1,0 +1,93 @@
+{% extends 'cocktails/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Cocktails > Add new Cocktail{% endblock %}
+
+{% block body_block %}
+
+
+<div class="modal fade" id="cropper-example-2-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      ...
+      <div class="modal-body">
+        <div id="cropper-example-2">
+          <img src="img/picture.jpg" alt="Picture">
+        </div>
+      </div>
+      ...
+    </div>
+  </div>
+</div>
+
+    
+    <section id="add_cocktail">
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h2 class="section-title text-center">Add a cocktail</h2>
+                    <form action="." method="post" enctype="multipart/form-data" id="form">
+                        {% csrf_token %}
+                        
+                        <!--<p class="small text-center">The fields you don't want to change please leave empty.</p>-->
+                        
+                        <div class="form-group">
+                            <label for="image">Select a Picture</label>
+                            <input name="image" type="file" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" name="name" type="text"  placeholder="Name of Cocktail" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input class="form-control" name="ingredients" type="text"  placeholder="Ingredients (comma separated)" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Describe the method of making this cocktail" name="how_to_make_comment" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="base">Base</label>
+                            <select class="form-control" name="base" required>
+                                <option value="1">Whiskey</option>
+                                <option value="2">Burbon</option>
+                                <option value="3">Liquor</option>
+                                <option value="4">Vodka</option>
+                                <option value="5">Rum</option>
+                                <option value="6">Gin</option>
+                                <option value="7">Tequila</option>
+                                <option value="8">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="taste_palette">Taste Palette</label>
+                            <select class="form-control" name="taste_palette" required>
+                                <option value="1">Sweet</option>
+                                <option value="2">Sour</option>
+                                <option value="3">Perfect</option>
+                                <option value="4">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;&nbsp; Submit</button>
+                            <a href="#" class="btn btn-warning" id="clear-form-btn"><span class="glyphicon glyphicon-erase"></span>&nbsp;&nbsp;&nbsp; Clear</a>
+                            <a href="/cocktail/profile/{{user.username}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp; Cancel</a>
+                        </div>
+
+                    </form>
+                
+                </div><!--end of form column-->
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+        
+    </section>
+
+{% endblock %}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Profiles &middot; Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Cocktail Masters Group">
+
+    <!-- Stylesheets -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet">
+	<link href="http://getbootstrap.com/dist/css/bootstrap-responsive.css" rel="stylesheet">
+    </head>
+
+    <body id="page-top" class="index">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" style ="background-color: #434343;">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <a class="navbar-brand" href="#page-top">*logo* </a>
+            </div>
+
+<ul class="nav nav-tabs">
+<ul class="nav navbar-nav navbar-right">
+  <li role="presentation" ><a href="{% url 'index' %}">Home</a></li>
+  <li role="presentation"class="active"><a href="{% url 'profile' %}">Profile</a></li>
+  <li role="presentation"><a href="{% url 'search' %}">Cocktails</a></li>
+  <li role="presentation" style ="margin-top: 12px">
+<!-- Button trigger modal -->
+<button type="button"  data-toggle="modal" data-target="#myModal">
+ <span class="glyphicon glyphicon-plus">
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <!--content of *add cocktail* modal here-->
+		<!--fields etc-->
+
+<!--inputbox-->
+<div class="input-group">
+  <input type="text" class="form-control" placeholder="option" aria-describedby="basic-addon1">
+</div>
+</br>
+<!--checkbox-->
+    <div class="input-group">
+      <span class="input-group-addon">
+        <input type="checkbox" aria-label="option">
+      </span>
+      <input type="text" class="form-control" aria-label="...">
+    </div><!-- /input-group -->
+<!--end checkbox option-->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</li>
+</ul>
+</div>
+<!--endmodal-->
+<!--bartender profile   -->
+
+<div class="container">
+<div class="media-left">
+   <a class="pull-left" href="#">
+      <img class="media-object-pull-left" src=<!--bartender image--> "" alt="..."height="150px" width="150px">
+   </a>
+   </br>
+    <button type="button" data-toggle="modal" data-target="#editModal" class="pull-right"> Edit</button>
+   <div class="media-body-pull-left">
+      <h4 class="pull-left"><!--bartender name--></h4>
+      <h4 class="pull-left"><!--bartender location--></h4>
+	  <h4 class="pull-left"><!--bartender job--></h4>
+	 
+   </div>
+</div>
+</div>
+
+<!-- edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <!-- edit profile modal, location/name/job/image fields- must be logged in-->
+		<!--we have yet to implement login or any sort of link to a login function this will need to be discussed?-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</li>
+</ul>
+</div>
+</br>
+<!-- bartender nav-->
+<!-- Nav tabs -->
+ <div class="container">
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#cocktails" aria-controls="cocktails" role="tab" data-toggle="tab">Cocktails</a></li>
+    <li role="presentation"><a href="#comment" aria-controls="comment" role="tab" data-toggle="tab">Comments</a></li>
+    <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews</a></li>
+  </ul>
+</br>
+  <!-- Tab pane contents -->
+  <div class="tab-content">
+  <div role="tabpanel" class="tab-pane fade in active" id="cocktails">list of this bartenders cocktails
+  <ul>
+  <li>1</li>
+  <li>2</li>
+  </ul>
+  </div>
+  <div role="tabpanel" class="tab-pane fade" id="comment">
+      <!--leave a comment on this bartenders page-->
+	  
+<!--Comments--> 
+<div class="container">
+	<ul id="comments" class="comments">
+    <li class="comment">
+        <div class="clearfix">
+            <h4 class="pull-left">Username</h4>
+            <p class="pull-right">Date</p>
+        </div>
+        <p>
+            Comment
+        </p>
+    </li>
+ 
+    <li class="comment clearfix">
+        <div class="clearfix">
+            <h4 class="pull-left">Username</h4>
+            <p class="pull-right">Date</p>
+        </div>
+        <p>
+            Comment
+        </p>
+    </li>
+</ul>
+
+</div>
+
+<!--leaving your own comment--> 
+
+<div class="well">
+ <!-- will have to be reviewed once logins are a thing i guess-->
+    <h4>Leave a comment</h4>
+ 
+    <form role="form" class="clearfix">
+ 
+        <div class="col-md-6 form-group">
+            <label class="sr-only" for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name">
+        </div>
+ 
+        <div class="col-md-6 form-group">
+            <label class="sr-only" for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Email">
+        </div>
+ 
+        <div class="col-md-12 form-group">
+            <label class="sr-only" for="email">Comment</label>
+            <textarea class="form-control" id="comment" placeholder="Comment"></textarea>
+        </div>
+ 
+        <div class="col-md-12 form-group text-right">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+ 
+    </form>  
+</div>
+  </div>
+    <div role="tabpanel" class="tab-pane fade in" id="reviews"> Reviews the bartender has given</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+<!-- footer-->
+<hr>
+<div id="footer" style="color:#000000">
+  <div class="container">
+    <div class="col-md-4"> 
+<p class="text-muted">
+twitter </br> facebook </div>
+</p>
+<div class="col-md-4">
+<p class="text-muted">
+about </br> sitemap </div>
+</p>
+  </div>
+</div>
+
+</div>
+
+<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src = "js/bootstrap.js"></script><script type="text/javascript"></script>
+
+  </body>
+</html>
+

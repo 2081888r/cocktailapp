@@ -1,0 +1,121 @@
+{% extends 'cocktails/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block body_block %}
+
+    <!--bootstrap carousel for adverts-->
+
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="/static/img/mojito.jpg" alt="...">    <!--change static to media-->
+                <div class="carousel-caption">
+                    <h3>Mojito</h3> <p class="lead">World's favourite rum cocktail</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="/static/img/whiterussian.jpg">  <!--change static to media-->
+                <div class="carousel-caption">
+                    <h3>White Russian</h3> <p class="lead"><span class="glyphicon glyphicon-star"></span> A true Movie Star <span class="glyphicon glyphicon-star"></span></p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="/static/img/margarita.jpg">  <!--change static to media-->
+                <div class="carousel-caption">
+                    <h3>Margarita</h3> <p class="lead">Est 1930s &amp; is just as popular today!</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="/static/img/cosmo.jpg">  <!--change static to media-->
+                <div class="carousel-caption">
+                    <h3>Cosmopolitan</h3> <p class="lead">Even Madonna likes it</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <!--end of carousel-->
+
+
+
+    <!--top rated cocktails-->
+    
+    <section id="popular-cocktails">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"><h2 class="section-title">Popular Cocktails</h2></div>
+            </div>
+            <div class="row">
+                
+                {% for cocktail in cocktails %}
+                <div class="col-md-4">
+                    <!--replace static with media-->
+                    <a href="/cocktail/cocktails/{{cocktail.slug}}/">
+                        <img src="/media/{{cocktail.image}}" class="img-responsive img-rounded center-block" style="height:300px;">
+                    </a> 
+                    <h3 class="text-center">{{cocktail.name}}</h3>
+                    <p class="text-center">Views: <b>{{cocktail.views}}</b></p>
+                    <a href="/cocktail/cocktails/{{cocktail.slug}}/" class="btn btn-default center-block">View Cocktail</a>
+                </div>  <!--end of cocktail 1-->
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--end of cocktails-->
+
+    <section id="home-recent-bartenders">
+        
+        <div class="container">
+        
+            <div class="row">
+                <div class="col-md-12"><h2 class="section-title">Most recent bartenders</h2></div>
+            </div>
+            
+            <div class="row">
+                {% for user, profile in bartenders %}
+                <div class="col-md-4">
+                    <div class="media">
+                        <div class="media-left media-top">
+                            <a href="/cocktail/profile/{{user.username}}">
+                                <img class="media-object home-bartender-avatar" src="/media/{{profile.avatar}}" alt=""style="height:145px;" >
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{profile.full_name}}</h4>
+                            <p>Works for: <b>{{profile.workplace}}</b></p>
+                            <a href="/cocktail/profile/{{user.username}}" class="btn btn-default center-block"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;View Profile</a>
+                        </div>
+                    </div>
+                </div>  <!--end of bartender-->
+                {% endfor %}
+                
+                
+            </div>
+            
+        </div>
+        
+    </section>
+
+{% endblock %}
